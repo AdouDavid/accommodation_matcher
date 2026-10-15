@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Accommodation Matcher</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <div class="app-shell">
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Student housing platform</p>
+                <h1>Accommodation Matcher</h1>
+            </div>
+            <span class="status-pill">Live dashboard</span>
+        </header>
+
+        <nav class="quick-nav reveal" aria-label="Main navigation">
+            <a href="#add-listing">Add listing</a>
+            <a href="#search-listings">Search</a>
+            <a href="#recommendations">Recommendations</a>
+        </nav>
+
+        <main class="dashboard">
+            <section class="panel">
+                <div class="panel-header">
+                    <div class="heading-group">
+                        <span class="step-badge">01</span>
+                        <h2>Add a listing</h2>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <label>Title
+                        <input id="a_title" placeholder="Room near campus">
+                    </label>
+                    <label>Address
+                        <input id="a_address" placeholder="Gwarinpa">
+                    </label>
+                    <label>Price per month
+                        <input id="a_price" type="number" min="0" placeholder="250000">
+                    </label>
+                    <label>Distance (km)
+                        <input id="a_dist" type="number" min="0" step="0.1" placeholder="2.4">
+                    </label>
+                    <label class="full-width">Facilities (comma separated)
+                        <input id="a_fac" placeholder="wifi, water, security">
+                    </label>
+                    <label>Contact
+                        <input id="a_contact" placeholder="0800...">
+                    </label>
+                    <button id="addBtn" class="primary-btn full-width-button">Add listing</button>
+                </div>
+                <div id="addMsg" class="msg"></div>
+            </section>
+
+            <section class="panel panel-wide reveal" id="search-listings">
+                <div class="panel-header">
+                    <div class="heading-group">
+                        <span class="step-badge">02</span>
+                        <h2>Search and filter</h2>
+                    </div>
+                </div>
+
+                <div class="filter-row">
+                    <label>Min price
+                        <input id="s_min" type="number" min="0" placeholder="0">
+                    </label>
+                    <label>Max price
+                        <input id="s_max" type="number" min="0" placeholder="500000">
+                    </label>
+                    <label>Max distance (km)
+                        <input id="s_dist" type="number" min="0" step="0.1" placeholder="5">
+                    </label>
+                    <button id="searchBtn" class="primary-btn">Search</button>
+                    <button id="compareBtn" class="secondary-btn">Compare ticked</button>
+                </div>
+                <div id="searchMsg" class="msg"></div>
+                <div id="results"></div>
+                <div id="compare"></div>
+            </section>
+
+            <section class="panel panel-wide reveal" id="recommendations">
+                <div class="panel-header">
+                    <div class="heading-group">
+                        <span class="step-badge">03</span>
+                        <h2>Get recommendations</h2>
+                    </div>
+                </div>
+
+                <div class="filter-row recommendations-grid">
+                    <label>Budget
+                        <input id="r_budget" type="number" min="0" placeholder="150000">
+                    </label>
+                    <label>Max distance (km)
+                        <input id="r_dist" type="number" min="0" step="0.1" placeholder="3">
+                    </label>
+                    <label>Must have
+                        <input id="r_req" placeholder="wifi">
+                    </label>
+                    <label>Nice to have
+                        <input id="r_pref" placeholder="water, security">
+                    </label>
+                </div>
+
+                <div class="filter-row weight-row">
+                    <label>Price weight (0-10)
+                        <input id="w_price" type="number" min="0" max="10" value="4">
+                    </label>
+                    <label>Distance weight (0-10)
+                        <input id="w_dist" type="number" min="0" max="10" value="3">
+                    </label>
+                    <label>Facilities weight (0-10)
+                        <input id="w_fac" type="number" min="0" max="10" value="3">
+                    </label>
+                    <button id="recBtn" class="primary-btn">Rank for me</button>
+                </div>
+
+                <div id="recMsg" class="msg"></div>
+                <div id="recResults"></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+
+</html>
